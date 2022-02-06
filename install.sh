@@ -219,7 +219,7 @@ arch-chroot /mnt sudo -u capote rm -rf /home/capote/fonts_tmp_folder
 
 # installing config files
 arch-chroot /mnt sudo -u capote mkdir /home/capote/GitHub
-arch-chroot /mnt sudo -u capote git clone https://github.com/ilbuonmarcio/cleight /home/capote/GitHub/cleight
+arch-chroot /mnt sudo -u capote git clone https://github.com/CapoteT/cleight /home/capote/GitHub/cleight
 arch-chroot /mnt sudo -u capote /bin/zsh -c "chmod 700 /home/capote/GitHub/cleight/install_configs.sh"
 arch-chroot /mnt sudo -u capote /bin/zsh -c "cd /home/capote/GitHub/cleight && ./install_configs.sh"
 arch-chroot /mnt cp /home/capote/GitHub/cleight/greetd.config.toml /etc/greetd/config.toml
