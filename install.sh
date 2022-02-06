@@ -137,7 +137,7 @@ arch-chroot /mnt echo "::1 localhost" >> /mnt/etc/hosts
 arch-chroot /mnt echo "127.0.1.1 cleight.localdomain cleight" >> /mnt/etc/hosts
 
 # making sudoers do sudo stuff without requiring password typing
-arch-chroot /mnt sed -i -e 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g' /etc/sudoers
+#arch-chroot /mnt sed -i -e 's/# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g' /etc/sudoers
 
 # add support for root lvm2 boot and make initframs for proper boot
 arch-chroot /mnt sed -i -e 's/base udev/base systemd udev/g' /etc/mkinitcpio.conf
@@ -189,57 +189,57 @@ arch-chroot /mnt echo "exec bspwm" >> /mnt/root/.xinitrc
 arch-chroot /mnt echo "exec bspwm" >> /mnt/home/capote/.xinitrc
 
 # installing yay
-arch-chroot /mnt sudo -u capote git clone https://aur.archlinux.org/yay.git /home/capote/yay_tmp_install
-arch-chroot /mnt sudo -u capote /bin/zsh -c "cd /home/capote/yay_tmp_install && yes | makepkg -si"
-arch-chroot /mnt rm -rf /home/capote/yay_tmp_install
+#arch-chroot /mnt sudo -u capote git clone https://aur.archlinux.org/yay.git /home/capote/yay_tmp_install
+#arch-chroot /mnt sudo -u capote /bin/zsh -c "cd /home/capote/yay_tmp_install && yes | makepkg -si"
+#arch-chroot /mnt rm -rf /home/capote/yay_tmp_install
 
 # adding makepkg optimizations
 arch-chroot /mnt sed -i -e 's/#MAKEFLAGS="-j2"/MAKEFLAGS=-j'$(nproc --ignore 1)'/' -e 's/-march=x86-64 -mtune=generic/-march=native/' -e 's/xz -c -z/xz -c -z -T '$(nproc --ignore 1)'/' /etc/makepkg.conf
 arch-chroot /mnt sed -i -e 's/!ccache/ccache/g' /etc/makepkg.conf
 
 # installing various packages from AUR
-arch-chroot /mnt sudo -u capote yay -S polybar --noconfirm
-arch-chroot /mnt sudo -u capote yay -S spotifyd spotify --noconfirm
-arch-chroot /mnt sudo -u capote yay -S corrupter-bin --noconfirm
-arch-chroot /mnt sudo -u capote yay -S visual-studio-code-bin --noconfirm
-arch-chroot /mnt sudo -u capote yay -S archtorify-git --noconfirm
-arch-chroot /mnt sudo -u capote yay -S greetd greetd-tuigreet --noconfirm
-arch-chroot /mnt sudo -u capote yay -S apple-fonts --noconfirm
-arch-chroot /mnt sudo -u capote yay -S picom-ibhagwan-git --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S polybar --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S spotifyd spotify --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S corrupter-bin --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S visual-studio-code-bin --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S archtorify-git --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S greetd greetd-tuigreet --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S apple-fonts --noconfirm
+#arch-chroot /mnt sudo -u capote yay -S picom-ibhagwan-git --noconfirm
 
 # adding tuigreet to boot
 arch-chroot /mnt systemctl enable greetd.service
 
 # installing oh-my-zsh
-arch-chroot /mnt sudo -u capote /bin/zsh -c 'cd ~ && curl -O https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh && chmod +x install.sh && RUNZSH=no ./install.sh && rm ./install.sh'
+#arch-chroot /mnt sudo -u capote /bin/zsh -c 'cd ~ && curl -O https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh && chmod +x install.sh && RUNZSH=no ./install.sh && rm ./install.sh'
 
 # installing vundle
-arch-chroot /mnt sudo -u capote mkdir -p /home/capote/.config/nvim/bundle
-arch-chroot /mnt sudo -u capote git clone https://github.com/VundleVim/Vundle.vim.git /home/capote/.config/nvim/bundle/Vundle.vim
+#arch-chroot /mnt sudo -u capote mkdir -p /home/capote/.config/nvim/bundle
+#arch-chroot /mnt sudo -u capote git clone https://github.com/VundleVim/Vundle.vim.git /home/capote/.config/nvim/bundle/Vundle.vim
 
 # installing fonts
-arch-chroot /mnt sudo -u capote mkdir /home/capote/fonts_tmp_folder
-arch-chroot /mnt sudo -u capote sudo mkdir /usr/share/fonts/OTF/
+#arch-chroot /mnt sudo -u capote mkdir /home/capote/fonts_tmp_folder
+#arch-chroot /mnt sudo -u capote sudo mkdir /usr/share/fonts/OTF/
 # material icons
-arch-chroot /mnt sudo -u capote /bin/zsh -c "cd /home/capote/fonts_tmp_folder && curl -o materialicons.zip https://github.com/google/material-design-icons/releases/download/3.0.1/material-design-icons-3.0.1.zip && unzip materialicons.zip"
-arch-chroot /mnt sudo -u capote /bin/zsh -c "sudo cp /home/capote/fonts_tmp_folder/material-design-icons-3.0.1/iconfont/MaterialIcons-Regular.ttf /usr/share/fonts/TTF/"
+#arch-chroot /mnt sudo -u capote /bin/zsh -c "cd /home/capote/fonts_tmp_folder && curl -o materialicons.zip https://github.com/google/material-design-icons/releases/download/3.0.1/material-design-icons-3.0.1.zip && unzip materialicons.zip"
+#arch-chroot /mnt sudo -u capote /bin/zsh -c "sudo cp /home/capote/fonts_tmp_folder/material-design-icons-3.0.1/iconfont/MaterialIcons-Regular.ttf /usr/share/fonts/TTF/"
 # removing fonts tmp folder
-arch-chroot /mnt sudo -u capote rm -rf /home/capote/fonts_tmp_folder
+#arch-chroot /mnt sudo -u capote rm -rf /home/capote/fonts_tmp_folder
 
 # installing config files
-arch-chroot /mnt sudo -u capote mkdir /home/capote/GitHub
-arch-chroot /mnt sudo -u capote git clone https://github.com/CapoteT/cleight /home/capote/GitHub/cleight
-arch-chroot /mnt sudo -u capote /bin/zsh -c "chmod 700 /home/capote/GitHub/cleight/install_configs.sh"
-arch-chroot /mnt sudo -u capote /bin/zsh -c "cd /home/capote/GitHub/cleight && ./install_configs.sh"
-arch-chroot /mnt cp /home/capote/GitHub/cleight/greetd.config.toml /etc/greetd/config.toml
+#arch-chroot /mnt sudo -u capote mkdir /home/capote/GitHub
+#arch-chroot /mnt sudo -u capote git clone https://github.com/CapoteT/cleight /home/capote/GitHub/cleight
+#arch-chroot /mnt sudo -u capote /bin/zsh -c "chmod 700 /home/capote/GitHub/cleight/install_configs.sh"
+#arch-chroot /mnt sudo -u capote /bin/zsh -c "cd /home/capote/GitHub/cleight && ./install_configs.sh"
+#arch-chroot /mnt cp /home/capote/GitHub/cleight/greetd.config.toml /etc/greetd/config.toml
 
 # create folder for screenshots
-arch-chroot /mnt sudo -u capote mkdir /home/capote/Screenshots
+#arch-chroot /mnt sudo -u capote mkdir /home/capote/Screenshots
 
 # create pictures folder, secrets folder and moving default wallpaper
-arch-chroot /mnt sudo -u capote mkdir /home/capote/Pictures/
-arch-chroot /mnt sudo -u capote mkdir /home/capote/.secrets/
-arch-chroot /mnt sudo -u capote mkdir /home/capote/Pictures/wallpapers/
+#arch-chroot /mnt sudo -u capote mkdir /home/capote/Pictures/
+#arch-chroot /mnt sudo -u capote mkdir /home/capote/.secrets/
+#arch-chroot /mnt sudo -u capote mkdir /home/capote/Pictures/wallpapers/
 
 # enable features on /etc/pacman.conf file
 arch-chroot /mnt sed -i -e 's/#UseSyslog/UseSyslog/g' /etc/pacman.conf
@@ -248,8 +248,8 @@ arch-chroot /mnt sed -i -e 's/#TotalDownload/TotalDownload/g' /etc/pacman.conf
 arch-chroot /mnt sed -i -e 's/#VerbosePkgLists/VerbosePkgLists/g' /etc/pacman.conf
 
 # enable firefox accelerated/webrender mode for quantum engine use
-arch-chroot /mnt zsh -c 'echo "MOZ_ACCELERATED=1" >> /etc/environment'
-arch-chroot /mnt zsh -c 'echo "MOZ_WEBRENDER=1" >> /etc/environment'
+#arch-chroot /mnt zsh -c 'echo "MOZ_ACCELERATED=1" >> /etc/environment'
+#arch-chroot /mnt zsh -c 'echo "MOZ_WEBRENDER=1" >> /etc/environment'
 
 # unmounting all mounted partitions
 umount -R /mnt
