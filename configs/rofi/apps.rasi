@@ -1,0 +1,74 @@
+configuration {
+  fullscreen:                     false;
+  show-icons:                     true;
+  icon-theme:                     "Papirus";
+  font:                           "Font SF Pro 10";
+  drun-display-format:            "{name}";
+}
+
+* {
+  background-color:               transparent;
+  background:                     #00000099;
+  background-alt:                 #49494939;
+  text-color:                     #f9f9f9;
+  selected-text-color:            #ffffff;
+  primary:                        #ffffff;
+  urgent:                         #ffffff;
+}
+
+window {
+  transparency:                   "real";
+  background-color:               @background;
+  location:                       center;
+  anchor:                         center;
+  border-radius:                  0;
+  padding:                        8px 8px 8px 8px;
+  width:			  960px;
+  height:			  840px;
+}
+
+prompt {
+  enabled: false;
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  padding: 24px 12px 24px 12px;
+}
+
+
+inputbar {
+  expand:                         false;
+  background-color:               #49494949;
+  border-radius:                  12;
+  margin:                         0px 0px 32px 12px;
+  padding:                        12px;
+  position:                       center;
+  width:                          1px;
+}
+
+entry {
+  horizontal-align:               0.5;
+  placeholder:                    "Buscar";
+  placeholder-color:              @text-color;
+  blink:                          true;
+}
+
+
+listview {
+  columns: 8;
+  spacing: 1;
+  dynamic: true;
+}
+
+element {
+  border-radius: 2;
+  orientation: vertical;
+  padding: 16 24 16 24;
+}
+
+element selected {
+    background-color:               @background-alt;
+    color:                          @selected-text-color;
+    border-radius:                  8;
+}
